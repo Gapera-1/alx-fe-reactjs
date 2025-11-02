@@ -3,6 +3,7 @@ import WelcomeMessage from "./components/WelcomeMessage"
 import Header from "./HeaderComponent/Header"
 import MainContent from "./MainContentComponent/MainContent"
 import Footer from "./FooterComponent/Footer"
+import UserProfile from "./components/UserProfile"
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -29,6 +30,7 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
         <Header />
         <MainContent />
         
