@@ -1,47 +1,34 @@
 function MainContent() {
+  const cities = ['Paris', 'Tokyo', 'New York', 'Cape Town'];
+
   return (
-    <main style={{ 
-      minHeight: '400px',
-      padding: '30px',
-      backgroundColor: '#ecf0f1',
-      margin: '0 20px 20px 20px',
-      borderRadius: '8px',
-      border: '1px solid #bdc3c7'
-    }}>
-      <h2 style={{ 
-        color: '#2c3e50',
+    <div
+      style={{
+        backgroundColor: '#f3f3f3',
+        padding: '25px',
+        marginTop: '15px',
+        borderRadius: '6px',
         textAlign: 'center',
-        marginBottom: '25px',
-        fontSize: '2rem'
-      }}>Welcome to Our Travel App</h2>
-      
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-        gap: '20px' 
-      }}>
-        <div style={{ 
-          backgroundColor: 'white',
-          padding: '20px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-        }}>
-          <h3 style={{ color: '#3498db' }}>Featured Destinations</h3>
-          <p></p>{/* EMPTY for checker */}
-        </div>
-        
-        <div style={{ 
-          backgroundColor: 'white',
-          padding: '20px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-        }}>
-          <h3 style={{ color: '#e74c3c' }}>Travel Tips</h3>
-          <p>Get the best travel advice from our experts.</p>
-        </div>
-      </div>
-    </main>
+      }}
+    >
+      <h2>Our Selection</h2>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {cities.map((city) => (
+          <li
+            key={city}
+            style={{
+              display: 'inline-block',
+              backgroundColor: 'white',
+              margin: '5px',
+              padding: '8px 15px',
+              borderRadius: '20px',
+            }}
+          >
+            {city}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
-
 export default MainContent;
