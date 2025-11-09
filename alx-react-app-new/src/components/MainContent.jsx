@@ -1,25 +1,27 @@
 function MainContent() {
-  const cities = ['Paris', 'Tokyo', 'New York', 'Cape Town'];
+  // Required literal text
+  const quote = "I love to visit New York, Paris, and Tokyo.";
 
   return (
-    <div
+    <main
       style={{
         backgroundColor: '#f3f3f3',
-        padding: '25px',
-        marginTop: '15px',
-        borderRadius: '6px',
+        padding: 25,
+        marginTop: 15,
+        borderRadius: 6,
         textAlign: 'center',
       }}
     >
       <h2>Our Selection</h2>
+      <p>{quote}</p>
       <ul style={{ listStyle: 'none', padding: 0 }}>
-        {cities.map((city) => (
+        {['Paris', 'Tokyo', 'New York', 'Cape Town'].map((city) => (
           <li
             key={city}
             style={{
               display: 'inline-block',
               backgroundColor: 'white',
-              margin: '5px',
+              margin: 5,
               padding: '8px 15px',
               borderRadius: '20px',
             }}
@@ -28,7 +30,8 @@ function MainContent() {
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }
+
 export default MainContent;
