@@ -27,7 +27,7 @@ function MainContent() {
           boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
         }}>
           <h3 style={{ color: '#3498db' }}>Featured Destinations</h3>
-          <p>Discover amazing cities around the world!</p>
+          <p>I love to visit New York, Paris, and Tokyo</p>
         </div>
         
         <div style={{ 
