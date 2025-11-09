@@ -6,6 +6,7 @@ function Navbar() {
     padding: '10px 20px',
     display: 'flex',
     gap: '15px',
+    justifyContent: 'space-around'   // <-- add this exact key
   };
 
   const linkStyle = { color: 'white', textDecoration: 'none' };
@@ -21,5 +22,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-   
