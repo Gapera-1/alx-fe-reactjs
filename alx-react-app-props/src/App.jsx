@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import UserContext from './context/UserContext';
+import UserContext from './components/UserContext';
 import ProfilePage from './components/ProfilePage';
 import Header from './components/Header';
 import Footer from './components/Footer';

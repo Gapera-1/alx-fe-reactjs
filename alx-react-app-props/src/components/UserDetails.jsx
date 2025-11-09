@@ -1,6 +1,6 @@
 // alx-react-app-props/src/components/UserDetails.jsx
 import React, { useContext } from 'react'; // Import useContext hook
-import UserContext from '../context/UserContext'; // Import the context
+import UserContext from './UserContext'; // Import the context
 
 function UserDetails() {
   // Consume the context directly using useContext hook
