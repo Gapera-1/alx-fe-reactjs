@@ -27,7 +27,7 @@ function MainContent() {
           boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
         }}>
           <h3 style={{ color: '#3498db' }}>Featured Destinations</h3>
-          <p></p>
+          <p>Discover amazing places to visit and make unforgettable memories.</p>
         </div>
         
         <div style={{ 
