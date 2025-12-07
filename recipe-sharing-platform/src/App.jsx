@@ -1,10 +1,15 @@
-import HomePage from "./components/HomePage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage.jsx";
+import RecipeDetail from "./components/RecipeDetail.jsx";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <HomePage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
