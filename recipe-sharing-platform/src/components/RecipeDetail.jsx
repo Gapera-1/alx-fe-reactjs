@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import recipes from "../data.json";
 
 export default function RecipeDetail() {
