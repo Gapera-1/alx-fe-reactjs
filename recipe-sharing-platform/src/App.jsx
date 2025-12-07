@@ -1,8 +1,10 @@
+import HomePage from "./components/HomePage";
+
 function App() {
   return (
-    <h1 className="text-4xl font-bold text-blue-500">
-      Tailwind Test – If this text is blue, Tailwind works!
-    </h1>
+    <div className="min-h-screen bg-gray-100">
+      <HomePage />
+    </div>
   );
 }
 
