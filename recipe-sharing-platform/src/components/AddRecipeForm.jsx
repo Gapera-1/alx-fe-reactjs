@@ -1,6 +1,41 @@
 import { useState } from "react";
 
-export default function AddRecipeForm() {
+/* Exported validator for tests and reuse */
+export const validate = ({ title, ingredients, steps }) => {
+  const errors = {};
+
+  const trimmedTitle = title.trim();
+  const ingredientList = ingredients
+    .split("\n")
+    .map((i) => i.trim())
+    .filter(Boolean);
+  const stepList = steps
+    .split("\n")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  if (!trimmedTitle) {
+    errors.title = "Title is required.";
+  }
+  if (ingredientList.length < 2) {
+    errors.ingredients = "Please provide at least two ingredients.";
+  }
+  if (stepList.length === 0) {
+    errors.steps = "Preparation steps are required.";
+  }
+
+  // Return both errors and normalized values for submission
+  return {
+    errors,
+    normalized: {
+      title: trimmedTitle,
+      ingredients: ingredientList,
+      instructions: stepList,
+    },
+  };
+};
+
+export default function AddRecipeForm({ onAdd }) {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
@@ -9,31 +44,21 @@ export default function AddRecipeForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation
-    const newErrors = {};
-    if (!title.trim()) newErrors.title = "Title is required.";
-    if (!ingredients.trim()) {
-      newErrors.ingredients = "Ingredients are required.";
-    } else {
-      const ingredientList = ingredients.split("\n").filter((i) => i.trim() !== "");
-      if (ingredientList.length < 2) {
-        newErrors.ingredients = "Please provide at least two ingredients.";
-      }
-    }
-    if (!steps.trim()) newErrors.steps = "Preparation steps are required.";
-
+    const { errors: newErrors, normalized } = validate({ title, ingredients, steps });
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Normally you’d send this data to a backend or update state
       const newRecipe = {
-        title,
-        ingredients: ingredients.split("\n"),
-        instructions: steps.split("\n"),
+        id: Date.now(),
+        title: normalized.title,
+        summary: "User-submitted recipe",
+        image: "https://via.placeholder.com/800x400?text=Recipe+Image",
+        ingredients: normalized.ingredients,
+        instructions: normalized.instructions,
       };
-      console.log("Recipe submitted:", newRecipe);
 
-      // Reset form
+      onAdd?.(newRecipe);
+
       setTitle("");
       setIngredients("");
       setSteps("");
@@ -45,7 +70,6 @@ export default function AddRecipeForm() {
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Add a New Recipe</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Title */}
         <div>
           <label className="block text-gray-700 font-medium mb-2">Recipe Title</label>
           <input
@@ -58,7 +82,6 @@ export default function AddRecipeForm() {
           {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
         </div>
 
-        {/* Ingredients */}
         <div>
           <label className="block text-gray-700 font-medium mb-2">Ingredients</label>
           <textarea
@@ -72,7 +95,6 @@ export default function AddRecipeForm() {
           )}
         </div>
 
-        {/* Steps */}
         <div>
           <label className="block text-gray-700 font-medium mb-2">Preparation Steps</label>
           <textarea
@@ -84,7 +106,6 @@ export default function AddRecipeForm() {
           {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition"
