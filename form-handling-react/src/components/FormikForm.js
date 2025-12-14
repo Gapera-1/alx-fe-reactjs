@@ -18,11 +18,14 @@ export default function FormikForm() {
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
-          const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(values),
-          });
+          const response = await fetch(
+            "https://jsonplaceholder.typicode.com/posts",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(values),
+            }
+          );
 
           const data = await response.json();
           alert("User registered successfully! " + JSON.stringify(data));
@@ -42,19 +45,31 @@ export default function FormikForm() {
           <div>
             <label>Username:</label>
             <Field type="text" name="username" />
-            <ErrorMessage name="username" component="div" style={{ color: "red" }} />
+            <ErrorMessage
+              name="username"
+              component="div"
+              style={{ color: "red" }}
+            />
           </div>
 
           <div>
             <label>Email:</label>
             <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" style={{ color: "red" }} />
+            <ErrorMessage
+              name="email"
+              component="div"
+              style={{ color: "red" }}
+            />
           </div>
 
           <div>
             <label>Password:</label>
             <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" style={{ color: "red" }} />
+            <ErrorMessage
+              name="password"
+              component="div"
+              style={{ color: "red" }}
+            />
           </div>
 
           <button type="submit" disabled={isSubmitting}>
