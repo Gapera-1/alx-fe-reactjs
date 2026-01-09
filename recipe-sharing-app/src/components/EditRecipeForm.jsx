@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRecipeStore } from './recipeStore';
 
 const EditRecipeForm = ({ recipe }) => {
@@ -13,15 +13,9 @@ const EditRecipeForm = ({ recipe }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
-        value={title} 
-        onChange={(e) => setTitle(e.target.value)} 
-      />
-      <textarea 
-        value={description} 
-        onChange={(e) => setDescription(e.target.value)} 
-      />
-      <button type="submit">Save Changes</button>
+      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+      <button type="submit">Update Recipe</button>
     </form>
   );
 };
