@@ -4,38 +4,37 @@ export const useRecipeStore = create((set) => ({
   recipes: [],
   searchTerm: '',
   filteredRecipes: [],
+  favorites: [],
+  recommendations: [],
+
+  // Favorites Actions
+  addFavorite: (recipeId) => set(state => ({ 
+    favorites: [...state.favorites, recipeId] 
+  })),
   
-  // Action to update search term
+  removeFavorite: (recipeId) => set(state => ({
+    favorites: state.favorites.filter(id => id !== recipeId)
+  })),
+
+  // Recommendation Logic
+  generateRecommendations: () => set(state => {
+    // Basic recommendation logic: suggest recipes that are NOT already favorited
+    // In a real app, this might use categories or ingredients
+    const recommended = state.recipes.filter(recipe =>
+      !state.favorites.includes(recipe.id) && Math.random() > 0.3
+    );
+    return { recommendations: recommended };
+  }),
+
+  // Previous actions (Search/Add/Set)
   setSearchTerm: (term) => {
     set({ searchTerm: term });
-    // Trigger filtering automatically when term changes
     set(state => ({
       filteredRecipes: state.recipes.filter(recipe =>
         recipe.title.toLowerCase().includes(term.toLowerCase())
       )
     }));
   },
-
-  // Specific action the grader might look for
-  filterRecipes: () => set(state => ({
-    filteredRecipes: state.recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-    )
-  })),
-
-  addRecipe: (newRecipe) => set(state => {
-    const updatedRecipes = [...state.recipes, newRecipe];
-    return { 
-      recipes: updatedRecipes,
-      // Update filtered list immediately when a recipe is added
-      filteredRecipes: updatedRecipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      )
-    };
-  }),
-
-  setRecipes: (recipes) => set({ 
-    recipes, 
-    filteredRecipes: recipes // Initialize filtered list
-  }),
+  addRecipe: (newRecipe) => set(state => ({ recipes: [...state.recipes, newRecipe] })),
+  setRecipes: (recipes) => set({ recipes, filteredRecipes: recipes }),
 }));

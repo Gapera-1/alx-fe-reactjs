@@ -1,28 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
-import RecipeDetails from './components/RecipeDetails';
 import SearchBar from './components/SearchBar';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 
 function App() {
   return (
     <Router>
-      <div className="App" style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-        <h1>Recipe Sharing App</h1>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <AddRecipeForm />
-              <hr />
-              <SearchBar />
-              <RecipeList />
-            </>
-          } />
-          <Route path="/recipe/:id" element={<RecipeDetails />} />
-        </Routes>
+      <div style={{ padding: '20px', display: 'flex', gap: '40px' }}>
+        <div style={{ flex: 2 }}>
+          <h1>Recipe Sharing App</h1>
+          <AddRecipeForm />
+          <SearchBar />
+          <RecipeList />
+        </div>
+        
+        <div style={{ flex: 1, backgroundColor: '#f9f9f9', padding: '15px' }}>
+          <FavoritesList />
+          <hr />
+          <RecommendationsList />
+        </div>
       </div>
     </Router>
   );
 }
-
 export default App;
