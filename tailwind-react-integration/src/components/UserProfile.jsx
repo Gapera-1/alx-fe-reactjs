@@ -6,14 +6,18 @@ function UserProfile() {
       max-w-xs md:max-w-sm
       mx-auto my-20
       rounded-lg shadow-lg
+       transition-shadow duration-300
+       hover:shadow-xl
     ">
       <img
-        src="https://via.placeholder.com/150"
+        src="https://tse1.mm.bing.net/th/id/OIP.8y9XqbpsEGSuHms9PoZ2-AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
         alt="User"
         className="
           rounded-full
           sm:w-24 sm:h-24 md:w-36 md:h-36
           mx-auto
+          hover:scale-110
+          transition-transform duration-300 ease-in-out
         "
       />
 
@@ -22,6 +26,7 @@ function UserProfile() {
         text-blue-800
         my-4
         text-center
+        hover:text-blue-500
       ">
         John Doe
       </h1>
